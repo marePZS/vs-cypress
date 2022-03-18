@@ -32,6 +32,7 @@ describe('board', ()=>{
             expect(intercept.response.body).to.have.property('id');
 
             boardId = intercept.response.body.id;
+            
         })
         
     })

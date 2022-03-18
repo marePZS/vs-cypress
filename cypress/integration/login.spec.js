@@ -1,12 +1,13 @@
 /// <reference types='cypress'/>
 import { loginPage } from "../pageObject/login"
+import { logOut } from "../pageObject/logOut"
 
 describe('login test', ()=>{
 
     before('login', ()=>{
         cy.visit('/')
-        
         cy.url().should('contain', '/login')
+        
     })
 
     xit('backendLogin',()=>{
@@ -14,11 +15,9 @@ describe('login test', ()=>{
         
     })
 
-    xit('login with social', ()=>{
-        loginPage.googleBtn
-    })
-
     it('valid credentials', ()=>{
+
+        cy.get('h1').should('have.text', 'Log in with your existing account');
 
         cy.intercept({
             method: 'POST',
@@ -35,5 +34,9 @@ describe('login test', ()=>{
             window.localStorage.setItem('token', intercept.response.body.token);
         })
         cy.url().should('contain', '/my-organizations')
+    })
+
+    it('logout', ()=>{
+        logOut.logoutButton();
     })
 })
