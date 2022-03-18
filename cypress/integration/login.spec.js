@@ -18,6 +18,7 @@ describe('login test', ()=>{
     it('valid credentials', ()=>{
 
         cy.get('h1').should('have.text', 'Log in with your existing account');
+        
 
         cy.intercept({
             method: 'POST',
